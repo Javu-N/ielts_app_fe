@@ -24,7 +24,7 @@ export default function RegisterPage() {
             if (typeof window !== "undefined") {
                 localStorage.setItem("auth_token", token);
             }
-            router.push("/");
+            router.push("/dashboard");
         } catch (err) {
             const message = err instanceof Error ? err.message : "Đăng ký thất bại";
             setError(message);
@@ -34,10 +34,10 @@ export default function RegisterPage() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center p-4">
-            <div className="w-full max-w-md border rounded-xl p-6 bg-white/5">
+        <div className="min-h-screen flex items-center justify-center p-6">
+            <div className="w-full max-w-md card p-6">
                 <h1 className="text-2xl font-semibold mb-1">Tạo tài khoản</h1>
-                <p className="text-sm text-gray-500 mb-6">Đăng ký để bắt đầu luyện tập IELTS</p>
+                <p className="text-sm text-gray-400 mb-6">Đăng ký để bắt đầu luyện tập IELTS</p>
 
                 {error ? (
                     <div className="mb-4 text-sm text-red-600" role="alert">
@@ -47,51 +47,51 @@ export default function RegisterPage() {
 
                 <form onSubmit={onSubmit} className="space-y-4">
                     <div>
-                        <label className="block text-sm mb-1" htmlFor="name">Họ và tên</label>
+                        <label className="label" htmlFor="name">Họ và tên</label>
                         <input
                             id="name"
                             type="text"
                             required
                             value={form.name}
                             onChange={(e) => setForm({ ...form, name: e.target.value })}
-                            className="w-full rounded-md border px-3 py-2 bg-transparent"
+                            className="input"
                             placeholder="Nguyễn Văn A"
                         />
                     </div>
 
                     <div>
-                        <label className="block text-sm mb-1" htmlFor="email">Email</label>
+                        <label className="label" htmlFor="email">Email</label>
                         <input
                             id="email"
                             type="email"
                             required
                             value={form.email}
                             onChange={(e) => setForm({ ...form, email: e.target.value })}
-                            className="w-full rounded-md border px-3 py-2 bg-transparent"
+                            className="input"
                             placeholder="you@example.com"
                         />
                     </div>
 
                     <div>
-                        <label className="block text-sm mb-1" htmlFor="password">Mật khẩu</label>
+                        <label className="label" htmlFor="password">Mật khẩu</label>
                         <input
                             id="password"
                             type="password"
                             required
                             value={form.password}
                             onChange={(e) => setForm({ ...form, password: e.target.value })}
-                            className="w-full rounded-md border px-3 py-2 bg-transparent"
+                            className="input"
                             placeholder="••••••"
                         />
                     </div>
 
                     <div>
-                        <label className="block text-sm mb-1" htmlFor="role">Vai trò</label>
+                        <label className="label" htmlFor="role">Vai trò</label>
                         <select
                             id="role"
                             value={form.role}
                             onChange={(e) => setForm({ ...form, role: e.target.value })}
-                            className="w-full rounded-md border px-3 py-2 bg-transparent"
+                            className="input"
                         >
                             <option value="student">Học viên</option>
                             <option value="teacher">Giáo viên</option>
@@ -101,14 +101,14 @@ export default function RegisterPage() {
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full rounded-md bg-black text-white py-2 disabled:opacity-50"
+                        className="w-full btn-primary"
                     >
                         {isSubmitting ? "Đang đăng ký..." : "Đăng ký"}
                     </button>
                 </form>
 
                 <div className="mt-4 text-sm">
-                    Đã có tài khoản? <a className="underline" href="/login">Đăng nhập</a>
+                    Đã có tài khoản? <a className="underline text-indigo-300" href="/login">Đăng nhập</a>
                 </div>
             </div>
         </div>
