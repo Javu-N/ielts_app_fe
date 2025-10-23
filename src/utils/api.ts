@@ -6,8 +6,15 @@ export type RegisterRequest = {
 };
 
 export type AuthResponse = {
-    token: string;
+    success: boolean;
+    message: string;
+    data: {
+        token: string;
+    };
+    errorCode: string | null;
+    timestamp: string;
 };
+
 
 const BASE_URL = "http://localhost:8080";
 

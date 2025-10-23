@@ -18,11 +18,16 @@ export default function LoginPage() {
         setError(null);
         setIsSubmitting(true);
         try {
-            const { token } = await login(form);
-            if (typeof window !== "undefined") {
-                localStorage.setItem("auth_token", token);
+            const response = await login(form); // kiểu AuthResponse
+            if (response.success && response.data?.token) {
+                // if (typeof window !== "undefined") {
+                //     localStorage.setItem("auth_token", response.data.token);
+                // }
+                localStorage.setItem("auth_token", response.data.token);
+                router.push("/dashboard");
+            } else {
+                throw new Error(response.message || "Đăng nhập thất bại");
             }
-            router.push("/dashboard");
         } catch (err) {
             const message = err instanceof Error ? err.message : "Đăng nhập thất bại";
             setError(message);
@@ -30,6 +35,7 @@ export default function LoginPage() {
             setIsSubmitting(false);
         }
     }
+
 
     return (
         <div className="min-h-screen flex items-center justify-center p-6">
